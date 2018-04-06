@@ -255,6 +255,7 @@ var map;
       zoom: 4,
       clickableIcons: false,
       styles: myStyles,
+      fullscreenControl: false,
       center: {lat: 36.102375, lng: -89.978027},
       mapTypeId: 'terrain'
     });

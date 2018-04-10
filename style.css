@@ -48,3 +48,23 @@ h1 {
 		display: none;
 	}
 }
+
+input {
+	display: flex;
+	margin: auto;
+	margin-bottom: 10px;
+	border-radius: 3px;
+	background-color: #A4D4CA;
+	border: none;
+	padding: 5px;
+	border-style: solid;
+	border-color: #A4D4CA;
+}
+
+input:hover {
+	background-color: transparent;
+	color: #A4D4CA;
+	font-weight: 2px;
+	border-style: solid;
+	border-color: #A4D4CA;
+}

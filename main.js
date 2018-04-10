@@ -285,3 +285,4 @@ var map;
     });
     heatmap.setMap(map);
   }
+ 

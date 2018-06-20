@@ -8,7 +8,7 @@
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
       #map {
-        height: 50%;
+        height: 70%;
       }
       /* Optional: Makes the sample page fill the window. */
       html, body {
@@ -51,7 +51,7 @@
       }
 
       .pac-controls {
-        display: inline-block;
+        /*display: inline-block;*/
         padding: 5px 11px;
       }
 
@@ -86,19 +86,31 @@
       #target {
         width: 345px;
       }
+
+      fieldset {
+        border-color: white;
+        border-style: solid;
+      }
+      form legend, label {
+        color: white;
+      }
+      form input {
+        border-color: white;
+        border-style: solid;
+      }
     </style>
   </head>
   <body>
     <input id="pac-input" class="controls" type="text" placeholder="Search Box" name="city" >
-    <input type="button" id="getWeather" value="search" >
     <div id="map"></div>
+    <input type="button" id="getWeather" value="whats the weather like over here?" >
 
     <article id="weather"></article>
     <form>
       <fieldset>
         <legend>Get current weather</legend>
         <label for="city">City:</label>
-        <input type="text"id="city" />
+        <input type="text" id="city" />
       </fieldset>
     </form>
     <script>

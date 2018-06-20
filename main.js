@@ -268,72 +268,83 @@ var map;
     script.src = 'https://developers.google.com/maps/documentation/javascript/examples/json/earthquake_GeoJSONP.js';
     document.getElementsByTagName('head')[0].appendChild(script);
 
+                    function getAPIdata() {
 
-  }
+                    var url = "http://api.openweathermap.org/data/2.5/weather";
+                    var apiKey ="cb0c741b8289fadab023979b7d8b2048";
+                    var city = document.getElementById("city").value;
+
+                    // construct request
+                    var request = url + "?" + "appid=" + apiKey + "&" + "q=" + city;
+                    
+                    // get current weather
+                    fetch(request)
+                    
+                    // parse to JSON format
+                    .then(function(response) {
+                      return response.json();
+                    })
+                    
+                    // render weather per day
+                    .then(function(response) {
+                      // render weatherCondition
+                      onAPISucces(response); 
+                    })
+                    
+                    // catch error
+                    .catch(function (error) {
+                      onAPIError(error);
+                    });
+                  }
 
 
-function getAPIdata() {
+                  function onAPISucces(response) {
+                    var city = document.getElementById("city").value;
+                    // get type of weather in string format
+                    var type = response.weather[0].description;
 
-  var url = "http://api.openweathermap.org/data/2.5/weather";
-  var apiKey ="cb0c741b8289fadab023979b7d8b2048";
-  var city = document.getElementById("city").value;
+                    // get temperature in Celcius
+                    var degC = Math.floor(response.main.temp - 273.15);
 
-  // construct request
-  var request = url + "?" + "appid=" + apiKey + "&" + "q=" + city;
-  
-  // get current weather
-  fetch(request)
-  
-  // parse to JSON format
-  .then(function(response) {
-    return response.json();
-  })
-  
-  // render weather per day
-  .then(function(response) {
-    // render weatherCondition
-    onAPISucces(response); 
-    showOnMap(); 
-  })
-  
-  // catch error
-  .catch(function (error) {
-    onAPIError(error);
-  });
+                    // render weather in DOM
+                    var weatherBox = document.getElementById('weather');
+                    weatherBox.innerHTML = degC + "&#176;C <br>" + type;
+
+
+
+                  }
+
+
+                  function onAPIError(error) {
+                    var city = document.getElementById("city").value;
+                    console.error('Fetch request failed', error);
+                    var weatherBox = document.getElementById('weather');
+                    weatherBox.innerHTML = 'No weather data available <br /> Did you enter a valid city?'; 
+                  }
+
+                  document.getElementById("getWeather").onclick = function () {
+                      getAPIdata(city);
+                  };
+   
+    var landingPlaces = [
+        {
+            name: 'Amsterdam'
+            , location: {
+                lat:  52.3702157
+                , lng: 4.8951679
+            }
+        , }
+, ];
+
+    var locationOne = new google.maps.Marker({
+        position: landingPlaces[0].location
+        , map: map
+        , label: 'A'
+        , animation: google.maps.Animation.DROP
+                , name: 'Amsterdam'
+
+    , });
+
 }
 
-
-function onAPISucces(response) {
-  var city = document.getElementById("city").value;
-  // get type of weather in string format
-  var type = response.weather[0].description;
-
-  // get temperature in Celcius
-  var degC = Math.floor(response.main.temp - 273.15);
-
-  // render weather in DOM
-  var weatherBox = document.getElementById('weather');
-  weatherBox.innerHTML = degC + "&#176;C <br>" + type;
-
-
-
-}
-
-
-function onAPIError(error) {
-  console.error('Fetch request failed', error);
-  var weatherBox = document.getElementById('weather');
-  weatherBox.innerHTML = 'No weather data available <br /> Did you enter a valid city?'; 
-}
-
-// init data stream
-document.getElementById("getWeather").onclick = function(){
-  getAPIdata();
-};
-
-function showOnMap () {
-  //get city
-  //get long and lat city
-  //make map show city
-  //show icon on map
-}
+          

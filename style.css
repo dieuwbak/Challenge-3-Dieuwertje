@@ -1,87 +1,113 @@
-
-body {
-	font-family: "Lucida Console", Monaco, monospace;
-	color: #A4D4CA;
-	background-color: #444444;
-}
-
-h1 {
-	text-align: center;
-}
-
+/* Always set the map height explicitly to define the size of the div
+ * element that contains the map. */
 #map {
-	margin: 0 auto;
-	width: 80vw;
-	height: 80vh;
-	color: #111;
-	box-shadow: 25px 25px 100px 25px black;
+  height: 70%;
+}
+/* Optional: Makes the sample page fill the window. */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+#description {
+  font-family: Roboto;
+  font-size: 15px;
+  font-weight: 300;
 }
 
-#map img {
-	display: flex;
-	justify-content: center;
-	align-self: center;
-	max-width: 100px;
-	border: 1px solid #333;
-	border-radius: 3px;
+#infowindow-content .title {
+  font-weight: bold;
 }
 
-@media only screen and (max-width: 1400px) and (min-width: 1001px) {
-	#map {
-		height: 89vh;
-	}
+#infowindow-content {
+  display: none;
 }
 
-@media only screen and (max-width: 1000px) and (min-width: 601px) {
-	#map {
-		height: 89vh;
-		width: unset;
-	}
+#map #infowindow-content {
+  display: inline;
 }
 
-@media only screen and (max-width: 600px) {
-	#map {
-		height: 97vh;
-		width: unset;
-	}
-	h1 {
-		display: none;
-	}
+.pac-card {
+  margin: 10px 10px 0 0;
+  border-radius: 2px 0 0 2px;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  outline: none;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  background-color: #fff;
+  font-family: Roboto;
 }
 
-input {
-	display: flex;
-	margin: auto;
-	margin-bottom: 10px;
-	border-radius: 3px;
-	background-color: #A4D4CA;
-	border: none;
-	padding: 5px;
-	border-style: solid;
-	border-color: #A4D4CA;
+#pac-container {
+  padding-bottom: 12px;
+  margin-right: 12px;
 }
 
-input:hover {
-	background-color: transparent;
-	color: #A4D4CA;
-	font-weight: 2px;
-	border-style: solid;
-	border-color: #A4D4CA;
+.pac-controls {
+  /*display: inline-block;*/
+  padding: 5px 11px;
 }
 
-body{
-	font-family: helvetica;
-	color: #FFFFFF;
-	background-color: #444444;
+.pac-controls label {
+  font-family: Roboto;
+  font-size: 13px;
+  font-weight: 300;
 }
 
+#pac-input, #getWeather {
+  background-color: #fff;
+  font-family: Roboto;
+  font-size: 15px;
+  font-weight: 300;
+  margin-left: 12px;
+  padding: 0 11px 0 13px;
+  text-overflow: ellipsis;
+  width: 400px;
+}
+
+#pac-input:focus {
+  border-color: #4d90fe;
+}
+
+#title {
+  color: #fff;
+  background-color: #4d90fe;
+  font-size: 25px;
+  font-weight: 500;
+  padding: 6px 12px;
+}
+#target {
+  width: 345px;
+}
+
+fieldset {
+  border-color: white;
+  border-style: solid;
+}
+form legend, label {
+  color: white;
+}
+form input {
+  border-color: white;
+  border-style: solid;
+}
+#getWeather, #pac-input {
+  padding: 10px;
+  border-style: solid;
+  border-color: grey;
+  color: grey;
+}
+#getWeather:hover {
+  color: white;
+  background-color: grey;
+}
+#flex {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 #weather {
-	background-color: #222222;
-	width: 200px;
-	padding: 6px;
-	text-align: center;
-}
-
-.hidden {
-	display: none;
+  color: grey;
+  font-family: Roboto;
+  margin-top: 3%;
 }

@@ -1,28 +1,28 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<title>Google maps</title>
-		<link rel="stylesheet" type="text/css" href="style.css">
-	</head>
-	<body>
-		<h1>where not to land</h1>
-		<div id="map"></div>
-
-		<h1>Weather API</h1>
-		<article id="weather"></article>
-		<form>
-			<fieldset>
-				<legend>Get current weather</legend>
-				<label for="city">City:</label>
-				<input type="text" name="city" id="city" />
-				<input type="button" id="getWeather" value="get current weather" />
-			</fieldset>
-		</form>
-
-		
-		<script src="main.js"></script>
-		<script id="source" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBW2tg8_ahd-EzDct29EoJuPB-YpNtth1g&callback=initMap&libraries=visualization"
-    async defer></script>
-	</body>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>Places Searchbox</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+  </head>
+  <body>
+    <input id="pac-input" class="controls" type="text" placeholder="Search Box" name="city" >
+    <div id="map"></div>
+    <div id="flex">
+      <input type="button" id="getWeather" value="whats the weather like over here?" >
+      <article id="weather"></article>
+    </div>
+    <form>
+      <fieldset>
+        <legend>Get current weather</legend>
+        <label for="city">City:</label>
+        <input type="text" id="city" />
+      </fieldset>
+    </form>
+    
+    <script src="main.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBW2tg8_ahd-EzDct29EoJuPB-YpNtth1g&libraries=places&callback=initAutocomplete"
+         async defer></script>
+  </body>
 </html>

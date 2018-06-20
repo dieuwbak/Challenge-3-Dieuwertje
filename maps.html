@@ -8,7 +8,7 @@
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
       #map {
-        height: 100%;
+        height: 50%;
       }
       /* Optional: Makes the sample page fill the window. */
       html, body {
@@ -91,6 +91,17 @@
   <body>
     <input id="pac-input" class="controls" type="text" placeholder="Search Box">
     <div id="map"></div>
+
+    <h1>Weather API</h1>
+    <article id="weather"></article>
+    <form>
+      <fieldset>
+        <legend>Get current weather</legend>
+        <label for="city">City:</label>
+        <input type="text" name="city" id="city" />
+        <input type="button" id="getWeather" value="get current weather" />
+      </fieldset>
+    </form>
     <script>
       // This example adds a search box to a map, using the Google Place Autocomplete
       // feature. People can enter geographical searches. The search box will return a
@@ -167,8 +178,68 @@
         });
       }
 
+
+
+      function getAPIdata() {
+
+        var url = "http://api.openweathermap.org/data/2.5/weather";
+        var apiKey ="cb0c741b8289fadab023979b7d8b2048";
+        var city = document.getElementById("city").value;
+
+        // construct request
+        var request = url + "?" + "appid=" + apiKey + "&" + "q=" + city;
+        
+        // get current weather
+        fetch(request)
+        
+        // parse to JSON format
+        .then(function(response) {
+          return response.json();
+        })
+        
+        // render weather per day
+        .then(function(response) {
+          // render weatherCondition
+          onAPISucces(response); 
+        })
+        
+        // catch error
+        .catch(function (error) {
+          onAPIError(error);
+        });
+      }
+
+
+      function onAPISucces(response) {
+        var city = document.getElementById("city").value;
+        // get type of weather in string format
+        var type = response.weather[0].description;
+
+        // get temperature in Celcius
+        var degC = Math.floor(response.main.temp - 273.15);
+
+        // render weather in DOM
+        var weatherBox = document.getElementById('weather');
+        weatherBox.innerHTML = degC + "&#176;C <br>" + type;
+
+
+
+      }
+
+
+      function onAPIError(error) {
+        var city = document.getElementById("city").value;
+        console.error('Fetch request failed', error);
+        var weatherBox = document.getElementById('weather');
+        weatherBox.innerHTML = 'No weather data available <br /> Did you enter a valid city?'; 
+      }
+
+      document.getElementById("getWeather").onclick = function () {
+          getAPIdata(city);
+      };
+
     </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBW2tg8_ahd-EzDct29EoJuPB-YpNtth1g&callback=initMap&libraries=visualization"
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBW2tg8_ahd-EzDct29EoJuPB-YpNtth1g&libraries=places&callback=initAutocomplete"
          async defer></script>
   </body>
 </html>

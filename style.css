@@ -9,7 +9,7 @@ h1 {
 	text-align: center;
 }
 
-/*#map {
+#map {
 	margin: 0 auto;
 	width: 80vw;
 	height: 80vh;
@@ -68,4 +68,33 @@ input:hover {
 	border-style: solid;
 	border-color: #A4D4CA;
 }
-*/
+
+#weather {
+	background-color: #222222;
+	width: 800px;
+	padding: 4px;
+	overflow: auto;
+}
+
+#weather > .forecastMoment {
+	float: left;
+	width: 96px;
+	margin: 2px;
+	padding-top: 4px;
+	padding-bottom: 4px;
+	text-align: center;
+	background-color: #D7DBDF;
+	border-radius: 6px;
+	color: #444;
+	font-size: 0.8em;
+}
+
+.temp {
+	font-weight: bold;
+	color: #0af;
+	font-size: 1.3em;
+}
+
+.hidden {
+	display: none;
+}

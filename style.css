@@ -111,3 +111,21 @@ form input {
   font-family: Roboto;
   margin-top: 3%;
 }
+
+@media only screen and (max-width: 1000px) and (min-width: 600px) {
+  #getWeather {
+    margin-top: 3%;
+  }
+}
+
+@media only screen and (max-width: 1400px) and (min-width: 1001px) {
+  #getWeather {
+    margin-top: 5%;
+  }
+}
+
+@media only screen and (max-width: 599px) {
+  #getWeather {
+    width: 100%;
+  }
+}

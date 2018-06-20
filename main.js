@@ -303,6 +303,7 @@ function getAPIdata() {
 
 
 function onAPISucces(response) {
+  var city = document.getElementById("city").value;
   // get type of weather in string format
   var type = response.weather[0].description;
 
@@ -312,6 +313,9 @@ function onAPISucces(response) {
   // render weather in DOM
   var weatherBox = document.getElementById('weather');
   weatherBox.innerHTML = degC + "&#176;C <br>" + type;
+
+
+
 }
 
 
@@ -325,3 +329,4 @@ function onAPIError(error) {
 document.getElementById("getWeather").onclick = function(){
   getAPIdata();
 };
+

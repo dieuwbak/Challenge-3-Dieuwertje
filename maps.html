@@ -61,7 +61,7 @@
         font-weight: 300;
       }
 
-      #pac-input {
+      #pac-input, #getWeather {
         background-color: #fff;
         font-family: Roboto;
         font-size: 15px;
@@ -89,17 +89,16 @@
     </style>
   </head>
   <body>
-    <input id="pac-input" class="controls" type="text" placeholder="Search Box">
+    <input id="pac-input" class="controls" type="text" placeholder="Search Box" name="city" >
+    <input type="button" id="getWeather" value="search" >
     <div id="map"></div>
 
-    <h1>Weather API</h1>
     <article id="weather"></article>
     <form>
       <fieldset>
         <legend>Get current weather</legend>
         <label for="city">City:</label>
-        <input type="text" name="city" id="city" />
-        <input type="button" id="getWeather" value="get current weather" />
+        <input type="text"id="city" />
       </fieldset>
     </form>
     <script>
@@ -184,7 +183,7 @@
 
         var url = "http://api.openweathermap.org/data/2.5/weather";
         var apiKey ="cb0c741b8289fadab023979b7d8b2048";
-        var city = document.getElementById("city").value;
+        var city = document.getElementById("pac-input").value;
 
         // construct request
         var request = url + "?" + "appid=" + apiKey + "&" + "q=" + city;
@@ -211,7 +210,7 @@
 
 
       function onAPISucces(response) {
-        var city = document.getElementById("city").value;
+        var city = document.getElementById("pac-input").value;
         // get type of weather in string format
         var type = response.weather[0].description;
 
@@ -228,7 +227,7 @@
 
 
       function onAPIError(error) {
-        var city = document.getElementById("city").value;
+        var city = document.getElementById("pac-input").value;
         console.error('Fetch request failed', error);
         var weatherBox = document.getElementById('weather');
         weatherBox.innerHTML = 'No weather data available <br /> Did you enter a valid city?'; 

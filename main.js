@@ -273,17 +273,17 @@ var map;
 
 
 function getAPIdata() {
-  
-  var url = "http://api.openweathermap.org/data/2.5/forecast";
+
+  var url = "http://api.openweathermap.org/data/2.5/weather";
   var apiKey ="cb0c741b8289fadab023979b7d8b2048";
-  var city = "the%20Hague";
+  var city = document.getElementById("city").value;
 
   // construct request
   var request = url + "?" + "appid=" + apiKey + "&" + "q=" + city;
   
-  // get weather forecast
+  // get current weather
   fetch(request)
-
+  
   // parse to JSON format
   .then(function(response) {
     return response.json();
@@ -291,77 +291,37 @@ function getAPIdata() {
   
   // render weather per day
   .then(function(response) {
-
     // render weatherCondition
-    onAPISucces(response);
+    onAPISucces(response);  
   })
   
   // catch error
   .catch(function (error) {
-    // onAPIError();
-    console.error('Request failed', error);
+    onAPIError(error);
   });
 }
 
-/**
- * Render weather listing
- */
+
 function onAPISucces(response) {
+  // get type of weather in string format
+  var type = response.weather[0].description;
 
-  var weatherList = response.list;
+  // get temperature in Celcius
+  var degC = Math.floor(response.main.temp - 273.15);
+
+  // render weather in DOM
   var weatherBox = document.getElementById('weather');
-
-  for(var i=0; i< weatherList.length; i++){
-    //console.log(weatherList[i].main.temp - 273.15);
-
-    var dateTime = new Date(weatherList[i].dt_txt);
-    var date = formDate(dateTime);
-    var time = formTime(dateTime);
-    var temp = Math.floor(weatherList[i].main.temp - 273.15);
-    var iconUrl = 'http://openweathermap.org/img/w/'+weatherList[i].weather[0].icon+'.png';
-
-    forecastMessage =  '<div class="forecastMoment">';
-    forecastMessage +=   '<div class="date"> '+date+' </div>';
-    forecastMessage +=   '<div class="time"> '+ time +' </div>';
-    forecastMessage +=   '<div class="temp"> '+temp+'&#176;C </div>';
-    forecastMessage +=   '<div class="icon"> <img src="'+iconUrl+'"> </div>';
-    forecastMessage += '</div>';
-
-    weatherBox.innerHTML += forecastMessage;
-  }
+  weatherBox.innerHTML = degC + "&#176;C <br>" + type;
 }
 
-/**
- * Error
- */
-function updateUIError() {
+
+function onAPIError(error) {
+  console.error('Fetch request failed', error);
   var weatherBox = document.getElementById('weather');
-  weatherBox.className = 'hidden'; 
-}
-
-/**
- * Format date
- */
-function formDate(date) {
-  var day = date.getDate();
-  var month = date.getMonth() + 1;
-  return day +'/'+ month;
-}
-
-/**
- * Format time
- */
-function formTime(date) {
-  var hours = date.getHours();
-  if(hours<10){
-    hours = '0'+hours;
-  }
-  var minutes = date.getMinutes();
-  if(minutes < 10){
-    minutes = '0'+ minutes;
-  }
-  return hours +':'+ minutes;
+  weatherBox.innerHTML = 'No weather data available <br /> Did you enter a valid city?'; 
 }
 
 // init data stream
-getAPIdata();
+document.getElementById("getWeather").onclick = function(){
+  getAPIdata();
+};

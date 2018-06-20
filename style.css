@@ -69,30 +69,17 @@ input:hover {
 	border-color: #A4D4CA;
 }
 
+body{
+	font-family: helvetica;
+	color: #FFFFFF;
+	background-color: #444444;
+}
+
 #weather {
 	background-color: #222222;
-	width: 800px;
-	padding: 4px;
-	overflow: auto;
-}
-
-#weather > .forecastMoment {
-	float: left;
-	width: 96px;
-	margin: 2px;
-	padding-top: 4px;
-	padding-bottom: 4px;
+	width: 200px;
+	padding: 6px;
 	text-align: center;
-	background-color: #D7DBDF;
-	border-radius: 6px;
-	color: #444;
-	font-size: 0.8em;
-}
-
-.temp {
-	font-weight: bold;
-	color: #0af;
-	font-size: 1.3em;
 }
 
 .hidden {

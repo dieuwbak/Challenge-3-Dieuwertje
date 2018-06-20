@@ -98,14 +98,35 @@
         border-color: white;
         border-style: solid;
       }
+      #getWeather, #pac-input {
+        padding: 10px;
+        border-style: solid;
+        border-color: grey;
+        color: grey;
+      }
+      #getWeather:hover {
+        color: white;
+        background-color: grey;
+      }
+      #flex {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      #weather {
+        color: grey;
+        font-family: Roboto;
+        margin-top: 3%;
+      }
     </style>
   </head>
   <body>
     <input id="pac-input" class="controls" type="text" placeholder="Search Box" name="city" >
     <div id="map"></div>
-    <input type="button" id="getWeather" value="whats the weather like over here?" >
-
-    <article id="weather"></article>
+    <div id="flex">
+      <input type="button" id="getWeather" value="whats the weather like over here?" >
+      <article id="weather"></article>
+    </div>
     <form>
       <fieldset>
         <legend>Get current weather</legend>

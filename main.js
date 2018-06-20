@@ -251,7 +251,7 @@ var map;
               ];
 
 
-    map = new google.maps.Map(document.getElementById('map'), {
+/*    map = new google.maps.Map(document.getElementById('map'), {
       zoom: 4,
       clickableIcons: false,
       styles: myStyles,
@@ -286,3 +286,4 @@ var map;
     heatmap.setMap(map);
   }
  
+*/

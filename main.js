@@ -292,7 +292,8 @@ function getAPIdata() {
   // render weather per day
   .then(function(response) {
     // render weatherCondition
-    onAPISucces(response);  
+    onAPISucces(response); 
+    showOnMap(); 
   })
   
   // catch error
@@ -330,3 +331,9 @@ document.getElementById("getWeather").onclick = function(){
   getAPIdata();
 };
 
+function showOnMap () {
+  //get city
+  //get long and lat city
+  //make map show city
+  //show icon on map
+}
